@@ -3,6 +3,7 @@ clear all; close all; clc
 addpath('Filterbank design\');
 addpath('Decompose rirs into subbands\')
 
+
 %% Generic filterbank design parameters
 gamma = 0.005;
 tau = 0.5;

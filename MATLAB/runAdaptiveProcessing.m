@@ -88,9 +88,36 @@ lowFreq{3} = 4000;
 highFreq{1} = 1500;
 highFreq{2} = 4000;
 highFreq{3} = 10000;
+% if 
+% load('MiscHelperFunctions\crossoverNetwork.mat','sosx');
+if ismac
+   load('MiscHelperFunctions/crossoverNetwork.mat','sosx');
+elseif ispc
 load('MiscHelperFunctions\crossoverNetwork.mat','sosx');
+    % 在这里添加适用于Windows系统的特定代码
+elseif isunix
+    disp('This is a Unix or Linux system.');
+    % 在这里添加适用于Unix或Linux系统的特定代码
+else
+    disp('Unknown operating system.');
+end
+
+
 if ~strcmp(evaluationEnvironment, 'simulation')
-    load('MiscHelperFunctions\parametricEqualization.mat','Bw','Aw','Bm1','Am1','Bm2','Am2','Bt','At');
+    
+if ismac
+   load('MiscHelperFunctions/parametricEqualization.mat','Bw','Aw','Bm1','Am1','Bm2','Am2','Bt','At');
+elseif ispc
+load('MiscHelperFunctions\parametricEqualization.mat','Bw','Aw','Bm1','Am1','Bm2','Am2','Bt','At');
+    % 在这里添加适用于Windows系统的特定代码
+elseif isunix
+    disp('This is a Unix or Linux system.');
+    % 在这里添加适用于Unix或Linux系统的特定代码
+else
+    disp('Unknown operating system.');
+end
+    
+    
     for i = 1:numberOfCrossoverBands
         inputSignalA{i} = sosfilt(sosx{i+1},inSigA);
         inputSignalB{i} = sosfilt(sosx{i+1},inSigB);
@@ -160,7 +187,17 @@ end
 zoneAIdx = 15:17;
 zoneBIdx = 21:23;
 
+if ismac
+load(['Decompose rirs into subbands/DecomposedRirs/' setupEnvironment '_K=' int2str(numberOfChannels) '_D=' int2str(decimationFactor) '_Lp=' int2str(prototypeFilterLength)]);
+elseif ispc
 load(['Decompose rirs into subbands\DecomposedRirs\' setupEnvironment '_K=' int2str(numberOfChannels) '_D=' int2str(decimationFactor) '_Lp=' int2str(prototypeFilterLength)]);
+    % 在这里添加适用于Windows系统的特定代码
+elseif isunix
+    disp('This is a Unix or Linux system.');
+    % 在这里添加适用于Unix或Linux系统的特定代码
+else
+    disp('Unknown operating system.');
+end
 
 %% Generate the subband signals
 for bandIdx = 1:numberOfCrossoverBands

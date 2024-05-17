@@ -1,4 +1,12 @@
 clear all; close all; clc
+% % 获取当前工作目录
+% currentDir = pwd;
+% 
+% % 将当前目录及其所有子目录添加到MATLAB路径中
+% addpath(genpath(currentDir));
+% 
+% % 显示已经添加到路径中的文件夹
+% disp(['Added ', currentDir, ' and its subdirectories to the MATLAB path.']);
 
 task = 'speedTest';
 numberOfChannelsList = [4, 8, 16, 32, 62, 128];
